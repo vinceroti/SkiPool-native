@@ -1,0 +1,85 @@
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+var _jsxFileName = '/home/vince/projects/SkiPool-react/App.js';
+
+var _react = require('react');
+
+var _react2 = babelHelpers.interopRequireDefault(_react);
+
+var _reactNative = require('react-native');
+
+var _reactNativeMaps = require('react-native-maps');
+
+var _reactNativeMaps2 = babelHelpers.interopRequireDefault(_reactNativeMaps);
+
+var _view = require('./components/styles/_view');
+
+var _view2 = babelHelpers.interopRequireDefault(_view);
+
+var App = function (_React$Component) {
+  babelHelpers.inherits(App, _React$Component);
+
+  function App() {
+    babelHelpers.classCallCheck(this, App);
+    return babelHelpers.possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+  }
+
+  babelHelpers.createClass(App, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        _reactNative.View,
+        {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 9
+          }
+        },
+        _react2.default.createElement(
+          _reactNative.View,
+          { style: _view2.default.view, __source: {
+              fileName: _jsxFileName,
+              lineNumber: 10
+            }
+          },
+          _react2.default.createElement(_reactNativeMaps2.default, {
+            style: _view2.default.map,
+            initialRegion: {
+              latitude: 37.78825,
+              longitude: -122.4324,
+              latitudeDelta: 0.0922,
+              longitudeDelta: 0.0421
+            },
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 11
+            }
+          })
+        ),
+        _react2.default.createElement(
+          _reactNative.View,
+          {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 21
+            }
+          },
+          _react2.default.createElement(
+            _reactNative.Text,
+            { style: _view2.default.text, __source: {
+                fileName: _jsxFileName,
+                lineNumber: 22
+              }
+            },
+            'Yo boi Vince is building out an app'
+          )
+        )
+      );
+    }
+  }]);
+  return App;
+}(_react2.default.Component);
+
+exports.default = App;
