@@ -2,6 +2,11 @@ import { StyleSheet } from 'react-native';
 
 
 const styles = StyleSheet.create({
+  container:{
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   view: {
     position: 'relative',
     height: '80%'

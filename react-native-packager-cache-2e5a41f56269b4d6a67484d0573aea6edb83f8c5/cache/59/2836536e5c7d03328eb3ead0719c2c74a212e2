@@ -21,12 +21,58 @@ var _view2 = babelHelpers.interopRequireDefault(_view);
 var App = function (_React$Component) {
   babelHelpers.inherits(App, _React$Component);
 
-  function App() {
+  function App(props) {
     babelHelpers.classCallCheck(this, App);
-    return babelHelpers.possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+
+    var _this = babelHelpers.possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+
+    _this.state = {
+      latitude: null,
+      longitude: null,
+      error: null,
+      map: _react2.default.createElement(
+        _reactNative.Text,
+        {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 14
+          }
+        },
+        'Retrieving your location'
+      )
+    };
+    return _this;
   }
 
   babelHelpers.createClass(App, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      navigator.geolocation.getCurrentPosition(function (position) {
+        _this2.setState({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+          error: null,
+          map: _react2.default.createElement(_reactNativeMaps2.default, {
+            style: _view2.default.map,
+            initialRegion: {
+              latitude: position.coords.latitude,
+              longitude: position.coords.longitude,
+              latitudeDelta: 0.0922,
+              longitudeDelta: 0.0421
+            },
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 25
+            }
+          })
+        });
+      }, function (error) {
+        return _this2.setState({ error: error.message });
+      }, { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 });
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -34,47 +80,46 @@ var App = function (_React$Component) {
         {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 9
+            lineNumber: 43
           }
         },
         _react2.default.createElement(
           _reactNative.View,
           { style: _view2.default.view, __source: {
               fileName: _jsxFileName,
-              lineNumber: 10
+              lineNumber: 44
             }
           },
-          _react2.default.createElement(_reactNativeMaps2.default, {
-            style: _view2.default.map,
-            initialRegion: {
-              latitude: 37.78825,
-              longitude: -122.4324,
-              latitudeDelta: 0.0922,
-              longitudeDelta: 0.0421
-            },
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 11
-            }
-          })
+          this.state.map
         ),
         _react2.default.createElement(
           _reactNative.View,
           {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 21
+              lineNumber: 47
             }
           },
           _react2.default.createElement(
             _reactNative.Text,
             { style: _view2.default.text, __source: {
                 fileName: _jsxFileName,
-                lineNumber: 22
+                lineNumber: 48
               }
             },
             'Yo boi Vince is building out an app'
-          )
+          ),
+          this.state.error ? _react2.default.createElement(
+            _reactNative.Text,
+            {
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 49
+              }
+            },
+            'Error: ',
+            this.state.error
+          ) : null
         )
       );
     }
