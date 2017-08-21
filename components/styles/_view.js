@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 
-const styles = StyleSheet.create({
+export default StyleSheet.create({
   container:{
     display: 'flex',
     justifyContent: 'center',
@@ -23,5 +23,3 @@ const styles = StyleSheet.create({
     position: 'absolute'
   }
 });
-
-export default styles;
