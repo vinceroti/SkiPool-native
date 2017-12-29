@@ -50,23 +50,35 @@ var App = function (_React$Component) {
       var _this2 = this;
 
       navigator.geolocation.getCurrentPosition(function (position) {
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
+        var initialRegion = {
+          latitude: latitude,
+          longitude: longitude,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421
+        };
+        var map = _react2.default.createElement(
+          _reactNativeMaps2.default,
+          { style: _view2.default.map, initialRegion: initialRegion, __source: {
+              fileName: _jsxFileName,
+              lineNumber: 29
+            }
+          },
+          _react2.default.createElement(_reactNativeMaps2.default.Marker, {
+            coordinate: initialRegion,
+            title: "Your Location",
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 30
+            }
+          })
+        );
         _this2.setState({
           latitude: position.coords.latitude,
           longitude: position.coords.longitude,
           error: null,
-          map: _react2.default.createElement(_reactNativeMaps2.default, {
-            style: _view2.default.map,
-            initialRegion: {
-              latitude: position.coords.latitude,
-              longitude: position.coords.longitude,
-              latitudeDelta: 0.0922,
-              longitudeDelta: 0.0421
-            },
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 25
-            }
-          })
+          map: map
         });
       }, function (error) {
         return _this2.setState({ error: error.message });
@@ -80,14 +92,14 @@ var App = function (_React$Component) {
         {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 43
+            lineNumber: 49
           }
         },
         _react2.default.createElement(
           _reactNative.View,
           { style: _view2.default.view, __source: {
               fileName: _jsxFileName,
-              lineNumber: 44
+              lineNumber: 50
             }
           },
           this.state.map
@@ -97,24 +109,24 @@ var App = function (_React$Component) {
           {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 47
+              lineNumber: 53
             }
           },
           _react2.default.createElement(
             _reactNative.Text,
             { style: _view2.default.text, __source: {
                 fileName: _jsxFileName,
-                lineNumber: 48
+                lineNumber: 54
               }
             },
-            'Yo boi Vince is building out an app'
+            'Stuff will go here'
           ),
           this.state.error ? _react2.default.createElement(
             _reactNative.Text,
             {
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 49
+                lineNumber: 55
               }
             },
             'Error: ',

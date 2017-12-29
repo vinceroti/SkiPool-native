@@ -5,38 +5,44 @@ import styles from './components/styles/_view';
 
 export default class App extends React.Component {
   constructor(props) {
-     super(props);
+    super(props);
 
-     this.state = {
-       latitude: null,
-       longitude: null,
-       error: null,
-       map: <Text>Retrieving your location</Text>
-     };
+    this.state = {
+      latitude: '',
+      longitude: '',
+      error: '',
+      map: <Text>Retrieving your location</Text>,
+      currentPosition: ''
+    };
+  }
+
+  componentWillMount() {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const currentPosition = {
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+        latitudeDelta: 0.0422,
+        longitudeDelta: 0.0221,
+      }
+
+      const map = <MapView style={styles.map} region={currentPosition}>
+
+      <MapView.Marker
+        coordinate={currentPosition}
+        title={"Your Location"}
+      />
+      </MapView>
+
+      this.setState({
+        map: map,
+        currentPosition: currentPosition
+      });
+    },
+    (error) => this.setState({ error: error.message }),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
+    );
    }
 
-   componentDidMount() {
-     navigator.geolocation.getCurrentPosition(
-       (position) => {
-         this.setState({
-           latitude: position.coords.latitude,
-           longitude: position.coords.longitude,
-           error: null,
-           map: <MapView
-             style={styles.map}
-             initialRegion={{
-               latitude: position.coords.latitude,
-               longitude: position.coords.longitude,
-               latitudeDelta: 0.0922,
-               longitudeDelta: 0.0421,
-             }}
-           />
-         });
-       },
-       (error) => this.setState({ error: error.message }),
-       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
-     );
-   }
 
   render() {
     return (
@@ -45,7 +51,7 @@ export default class App extends React.Component {
           { this.state.map }
         </View>
         <View>
-          <Text style={styles.text}>Yo boi Vince is building out an app</Text>
+          <Text style={styles.text}>Stuff will go here</Text>
           {this.state.error ? <Text>Error: {this.state.error}</Text> : null}
         </View>
       </View>
