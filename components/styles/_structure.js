@@ -10,5 +10,14 @@ export default StyleSheet.create({
   container: {
     paddingRight: 10,
     paddingLeft: 10
+  },
+  alignCenter: {
+    alignSelf: 'center'
+  },
+  marginTop: {
+    marginTop: 10
+  },
+  anchor: {
+    color: 'blue'
   }
 });

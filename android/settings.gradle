@@ -1,0 +1,3 @@
+rootProject.name = 'SkiPool-react'
+
+include ':app'
